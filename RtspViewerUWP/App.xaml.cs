@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibVLCSharp.Shared;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -18,6 +19,7 @@ namespace RtspViewerUWP
         /// </summary>
         public App()
         {
+            Core.Initialize();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
