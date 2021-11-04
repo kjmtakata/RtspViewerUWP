@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="RtspViewerUWP.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RtspViewerUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <MenuFlyout x:Key="contextMenuFlyout">
+            <MenuFlyoutItem Text="Delete" Click="MenuFlyoutItem_Click"/>
+        </MenuFlyout>
+    </Page.Resources>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+            <TextBox x:Name="textBox" PlaceholderText="Add RTSP URL" Width="400"/>
+            <Button Content="Add" Margin="10,0,0,0" Click="Button_Click"/>
+        </StackPanel>
+        <ListBox ItemsSource="{x:Bind rtspUrls}" x:Name="listBox" SelectionMode="Single" Margin="0,10,0,0" ContextFlyout="{StaticResource contextMenuFlyout}"/>
+    </StackPanel>
+</Page>
