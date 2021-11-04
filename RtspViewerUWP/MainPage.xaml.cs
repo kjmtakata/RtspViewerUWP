@@ -1,13 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace RtspViewerUWP
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
 
@@ -16,29 +11,30 @@ namespace RtspViewerUWP
             InitializeComponent();
         }
 
-        private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void NavigationViewControl_SelectionChanged(NavigationView _0, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)
             {
-                contentFrame.Navigate(typeof(SettingsPage));
+                _ = contentFrame.Navigate(typeof(SettingsPage));
             }
             else
             {
-                var selectedItem = (NavigationViewItem)args.SelectedItem;
+                NavigationViewItem selectedItem = (NavigationViewItem)args.SelectedItem;
                 if (selectedItem != null)
                 {
-                    
-                    string selectedItemTag = ((string)selectedItem.Tag);
-                    System.Diagnostics.Debug.WriteLine(selectedItemTag);
-                    if (selectedItemTag == "streams")
+                    switch (selectedItem.Tag)
                     {
-                        contentFrame.Navigate(typeof(StreamsPage));
+                        case "streams":
+                            _ = contentFrame.Navigate(typeof(StreamsPage));
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
         }
 
-        private void NavigationViewControl_Loaded(object sender, RoutedEventArgs e)
+        private void NavigationViewControl_Loaded(object _0, RoutedEventArgs _1)
         {
             // set the initial SelectedItem 
             foreach (NavigationViewItemBase item in NavigationViewControl.MenuItems)

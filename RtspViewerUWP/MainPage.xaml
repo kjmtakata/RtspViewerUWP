@@ -6,7 +6,7 @@
 
     <NavigationView PaneDisplayMode="Top" x:Name="NavigationViewControl" IsBackButtonVisible="Collapsed" SelectionChanged="NavigationViewControl_SelectionChanged" Loaded="NavigationViewControl_Loaded">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Streams" Tag="streams" Icon="Video" IsEnabled="True"/>
+            <NavigationViewItem Content="Streams" Tag="streams" Icon="Video"/>
         </NavigationView.MenuItems>
         <Frame x:Name="contentFrame">
         </Frame>
