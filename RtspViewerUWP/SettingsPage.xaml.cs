@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace RtspViewerUWP
 {
@@ -23,17 +25,20 @@ namespace RtspViewerUWP
             }
         }
 
-        private void Button_Click(object _0, RoutedEventArgs _1)
+        private void AddUrl()
         {
             _rtspUrls.Add(textBox.Text);
-            System.Diagnostics.Debug.WriteLine(string.Join(",", _rtspUrls));
             textBox.Text = "";
             _localSettings.Values["rtspUrls"] = _rtspUrls.ToArray();
         }
 
+        private void Button_Click(object _0, RoutedEventArgs _1)
+        {
+            AddUrl();
+        }
+
         private void MenuFlyoutItem_Click(object _0, RoutedEventArgs _1)
         {
-            System.Diagnostics.Debug.WriteLine((string)listBox.SelectedValue);
             _ = _rtspUrls.Remove((string)listBox.SelectedValue);
             if (_rtspUrls.Count == 0)
             {
@@ -42,6 +47,14 @@ namespace RtspViewerUWP
             else
             {
                 _localSettings.Values["rtspUrls"] = _rtspUrls.ToArray();
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                AddUrl();
             }
         }
     }
